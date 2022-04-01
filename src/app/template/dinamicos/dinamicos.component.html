@@ -1,0 +1,73 @@
+<h2>Templates  : <small> Formularios Dinamicos</small> </h2> 
+<hr>
+
+<form (ngSubmit)="guardar(miFormulario)" autocomplete="off" #miFormulario="ngForm">
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input type="text"
+            class="form-control"
+            [ngModel] = "persona.nombre"
+            required
+            placeholder="Nombre de la Persona"
+            name="nombre"
+            >
+            <span *ngIf="miFormulario.controls['nombre']?.errors && miFormulario.controls['nombre']?.touched " class="form-text text-danger">Este campo es Obligatorio</span>
+
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input 
+                class="form-control"
+                placeholder="Agregar Favorito"
+                required
+                [(ngModel)] = "game"
+                name="game"
+                >
+            <button type="button" (click)="agregarFavorito()" class="btn btn-outline-primary"><i class="bi bi-chevron-double-down"></i></button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Lista de Favoritos</label>
+        <div class="col-sm-9">
+            <div class="input-group mb-1" *ngFor="let game of persona.favoritos ; let i = index">
+                <input 
+             type="text" 
+             
+             [(ngModel)]="game.favorito"
+             class="form-control "
+             name="game_{{i}}"
+              >
+              <button (click)="eliminar(i)" type="button" class="btn btn-outline-primary"><i class="bi-trash"></i>
+              </button>
+
+
+            </div>
+            
+
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button
+            type="button"
+            [disabled] = "miFormulario.invalid"
+            (click)="guardar(miFormulario)"
+             class="btn btn-primary float-end"
+             >Guardar</button>
+
+        </div>
+    </div>
+
+
+</form>

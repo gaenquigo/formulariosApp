@@ -1,0 +1,68 @@
+<h2>Templates  : <small> Formularios Dinamicos</small> </h2> 
+<hr>
+
+<form  autocomplete="off" (ngSubmit)="guardar()" [formGroup]="miFormulario">
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input type="text"
+            class="form-control"
+            placeholder="Nombre de la Persona"
+            formControlName = "nombre"
+            >
+            <span *ngIf="campoValido('nombre')"  class="form-text text-danger">Este campo es Obligatorio</span>
+
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input 
+                class="form-control"
+                placeholder="Agregar Favorito"
+                [formControl] = "nuevoFavorito"
+                (keyup.enter)="agregarFavorito()"
+                >
+            <button type="button" (click)="agregarFavorito()"  class="btn btn-outline-primary"><i class="bi bi-chevron-double-down"></i></button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Lista de Favoritos</label>
+        
+        <div class="col-sm-9" formArrayName="favoritos">
+
+             <div class="input-group mb-1" *ngFor="let favorito of favoritosArr.controls ; let i = index " >
+                <input 
+             type="text" 
+             [formControlName] = "i" 
+             class="form-control "
+              >
+              <button type="button" (click)="borrar(i)" class="btn btn-outline-primary"><i class="bi-trash"></i>
+              </button>
+
+
+            </div> 
+            
+
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button
+            type="submit"
+             class="btn btn-primary float-end"
+             >Guardar</button>
+
+        </div>
+    </div>
+
+
+</form>

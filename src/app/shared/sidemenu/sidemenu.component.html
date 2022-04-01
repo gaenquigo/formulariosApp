@@ -1,0 +1,36 @@
+<h2>Template</h2>
+<hr>
+<ul class="list-group">
+    <li *ngFor="let item of listMenuTemplate"
+     class="list-group-item"
+    [routerLink]="item.ruta"
+    routerLinkActive="active">
+        {{item.nombre}}
+    </li>
+    
+</ul>
+<br>
+<h2>Reactive</h2>
+<hr>
+<ul class="list-group">
+    <li *ngFor="let item of listMenuReactive"
+     class="list-group-item"
+    [routerLink]="item.ruta"
+    routerLinkActive="active">
+        {{item.nombre}}
+    </li>
+    
+</ul>
+
+<br>
+<h2>Validaciones</h2>
+<hr>
+<ul class="list-group">
+    <li *ngFor="let authmenu of authMenu"
+     class="list-group-item"
+    [routerLink]="authmenu.ruta"
+    routerLinkActive="active">
+        {{authmenu.nombre}}
+    </li>
+    
+</ul>
